@@ -23,7 +23,7 @@ const SalesVew = () => {
         <Button text={'Shop Now'} />
       </View>
 
-      <View>
+      <View style={styles.runningManViewStyle}>
         <Image
           style={styles.runningManImageStyle}
           source={require('@/Assets/Images/running_man.png')}
@@ -37,21 +37,29 @@ export default SalesVew
 
 const styles = StyleSheet.create({
   saleViewStyle: {
-    height: '20%',
     borderRadius: 40,
-    display: 'flex',
-    flexDirection: 'row',
     margin: '5%',
     backgroundColor: '#61677A',
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
   },
 
   saleViewTextViewStyle: {
     margin: '3%',
     marginTop: '5%',
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   runningManImageStyle: {
     height: 200,
     width: 200,
+  },
+  runningManViewStyle: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

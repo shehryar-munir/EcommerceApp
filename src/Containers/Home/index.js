@@ -8,7 +8,7 @@ import ProductCard from '@/Components/ProductCard'
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      <Header />
       <Brands />
       <SalesVew />
 
@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: 10,
+    flex: 1,
   },
   productsContainer: {
-    display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 })

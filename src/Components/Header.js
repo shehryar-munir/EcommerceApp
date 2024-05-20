@@ -1,8 +1,9 @@
 import React from 'react'
 import { Image, TouchableOpacity, View, StyleSheet } from 'react-native'
 import SearchBar from '@/Components/SearchBar'
+import * as navigation from '@/Navigators/Root'
 
-const Header = ({ navigation }) => {
+const Header = () => {
   const goBack = () => {
     navigation.navigate('SplashScreen')
   }
