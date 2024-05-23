@@ -6,24 +6,43 @@ import {
   ImageBackground,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from 'react-native'
 import Tag from '@/Components/Tag'
 import * as navigation from '@/Navigators/Root'
 
 const ProductDetails = ({ route: { params } }) => {
-  const { productName, productDescription, productPrice, productImage } = params
+  const {
+    productName,
+    productDescription,
+    productPrice,
+    productImageUrl,
+    availableSizes,
+    addToCart,
+  } = params
   const tags = ['Women', 'Highly Rated', '5 Pairs Left']
-  const shoeSizes = ['UK 6', 'UK 7', 'UK 8', 'UK 9', 'UK 10']
 
   const handleAddToCartPress = () => {
-    navigation.navigate('Cart')
+    addToCart()
   }
-
+  const goBack = () => {
+    navigation.navigate('Home')
+  }
   return (
     <View style={styles.container}>
       <View style={styles.productImageViewStyle}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={goBack}>
+            <View>
+              <Image
+                style={{ height: 40, width: 40 }}
+                source={require('@/Assets/Images/white_back_arrow.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
         <ImageBackground
-          source={productImage}
+          source={{ uri: productImageUrl }}
           resizeMode="cover"
           style={styles.productImageStyle}
         />
@@ -81,11 +100,13 @@ const ProductDetails = ({ route: { params } }) => {
                 flexWrap: 'wrap',
               }}
             >
-              {shoeSizes.map(item => (
-                <View style={{ marginLeft: 7 }}>
-                  <Tag tagText={item} />
-                </View>
-              ))}
+              {availableSizes.map((item, index) => {
+                return (
+                  <View style={{ marginLeft: 7 }} key={index}>
+                    <Tag tagText={item} />
+                  </View>
+                )
+              })}
             </View>
           </View>
 
@@ -118,7 +139,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#272829',
   },
-
+  header: {
+    flexDirection: 'row',
+    padding: 5,
+  },
   productImageViewStyle: {
     flex: 0.5,
   },

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, TextInput, StyleSheet } from 'react-native'
 
-const SearchBar = ({ navigation, placeholderText }) => {
+const SearchBar = ({ navigation, placeholderText, handleTextChange }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -11,6 +11,7 @@ const SearchBar = ({ navigation, placeholderText }) => {
       <TextInput
         style={styles.searchBarTextInputStyle}
         placeholder={placeholderText}
+        onChangeText={handleTextChange}
       />
     </View>
   )

@@ -1,9 +1,16 @@
 import React from 'react'
-import { Image, ScrollView, Text, View, StyleSheet } from 'react-native'
+import {
+  Image,
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
 
 const brandsLogoImages = [
   {
-    brandName: 'Addidas',
+    brandName: 'Adidas',
     brandLogoUri: require('@/Assets/Images/addidas.png'),
   },
   {
@@ -24,7 +31,7 @@ const brandsLogoImages = [
   },
 ]
 
-const Brands = () => {
+const Brands = ({ addFilter }) => {
   return (
     <View style={styles.brandsFilterViewStyle}>
       <Text style={{ color: '#272829' }}>Brand</Text>
@@ -32,12 +39,14 @@ const Brands = () => {
       <ScrollView style={styles.brandImagesStyle}>
         <View style={styles.brandImagesStyle}>
           {brandsLogoImages.map(item => (
-            <View key={item.brandName} style={styles.brandImageViewStyle}>
-              <Image
-                style={styles.brandImageStyle}
-                source={item.brandLogoUri}
-              />
-            </View>
+            <TouchableOpacity key={item.brandName} onPress={() => addFilter(item.brandName)}>
+              <View key={item.brandName} style={styles.brandImageViewStyle}>
+                <Image
+                  style={styles.brandImageStyle}
+                  source={item.brandLogoUri}
+                />
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>

@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:818389047636:ios:2103d5726fbd08136310c1</string>
+	<key>DATABASE_URL</key>
+	<string>https://ecommerceapp-burakbinmunir-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

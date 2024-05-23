@@ -40,9 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     margin: '5%',
     backgroundColor: '#61677A',
-    flex: 1,
     flexDirection: 'row',
-    padding: 10,
   },
 
   saleViewTextViewStyle: {

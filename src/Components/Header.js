@@ -3,9 +3,13 @@ import { Image, TouchableOpacity, View, StyleSheet } from 'react-native'
 import SearchBar from '@/Components/SearchBar'
 import * as navigation from '@/Navigators/Root'
 
-const Header = () => {
+const Header = ({ handleTextChange, cart }) => {
   const goBack = () => {
     navigation.navigate('SplashScreen')
+  }
+
+  const goToCart = () => {
+    navigation.navigate('Cart', { cart })
   }
 
   return (
@@ -25,14 +29,20 @@ const Header = () => {
       <SearchBar
         navigation={navigation}
         placeholderText={'Search by brand,type, etc...'}
+        handleTextChange={handleTextChange}
       />
 
-      <View style={styles.profileImageViewStyle}>
-        <Image
-          style={styles.profileImageStyle}
-          source={require('@/Assets/Images/placeholderprofilepic.png')}
-        />
-      </View>
+      <TouchableOpacity onPress={goToCart}>
+        <View style={styles.profileImageViewStyle}>
+          <Image
+            style={styles.profileImageStyle}
+            source={{
+              uri:
+                'data:image/png;base64,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',
+            }}
+          />
+        </View>
+      </TouchableOpacity>
     </View>
   )
 }
