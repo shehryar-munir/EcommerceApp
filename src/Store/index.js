@@ -15,11 +15,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import startup from './Startup'
 import user from './User'
 import theme from './Theme'
+import products from './Products'
+import cart from './Cart'
 
 const reducers = combineReducers({
   startup,
   user,
   theme,
+  products,
+  cart,
 })
 
 const persistConfig = {

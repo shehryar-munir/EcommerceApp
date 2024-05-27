@@ -10,20 +10,32 @@ import {
 } from 'react-native'
 import Tag from '@/Components/Tag'
 import * as navigation from '@/Navigators/Root'
+import { useDispatch, useSelector } from 'react-redux'
+import AddProductToCart from '@/Store/Cart/AddProductToCart'
 
 const ProductDetails = ({ route: { params } }) => {
   const {
+    productID,
     productName,
     productDescription,
     productPrice,
     productImageUrl,
     availableSizes,
-    addToCart,
   } = params
   const tags = ['Women', 'Highly Rated', '5 Pairs Left']
 
+  const dispatch = useDispatch()
   const handleAddToCartPress = () => {
-    addToCart()
+    const product = {
+      productID,
+      productName,
+      productDescription,
+      productPrice,
+      productImageUrl,
+      availableSizes,
+      qty: 1,
+    }
+    dispatch(AddProductToCart.action({ product }))
   }
   const goBack = () => {
     navigation.navigate('Home')

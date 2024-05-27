@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Text,
   Image,
@@ -7,36 +7,35 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native'
+import { useDispatch } from 'react-redux'
+import UpdateProductQty from '@/Store/Cart/UpdateProductQty'
 
 const CartItem = ({
+  productId,
   productName,
   productImageUrl,
   productBrand,
   productPrice,
-  addQtyPrice,
+  qty,
 }) => {
-  const [quantity, setQuantity] = useState('1')
-
+  const [quantity, setQuantity] = useState(qty)
+  const dispatch = useDispatch()
   const increaseQty = () => {
-    let qty = Number(quantity)
-    qty = qty + 1
-    setQuantity(String(qty))
-    addQtyPrice(productPrice.split('$')[1])
+    dispatch(UpdateProductQty.action({ productId: productId, qty: 1 }))
   }
 
   const decreaseQty = () => {
-    if (quantity === '0') {
+    if (quantity === 0) {
+      setQuantity(0)
       return
+    } else {
+      dispatch(UpdateProductQty.action({ productId: productId, qty: -1 }))
     }
-
-    let qty = Number(quantity)
-    qty = qty - 1
-    if (qty < 0) {
-      qty = 0
-    }
-    setQuantity(String(qty))
-    addQtyPrice(-productPrice.split('$')[1])
   }
+
+  useEffect(() => {
+    setQuantity(qty)
+  }, [qty])
 
   return (
     <View style={styles.container}>
@@ -86,7 +85,7 @@ const CartItem = ({
               </View>
             </TouchableOpacity>
             <TextInput
-              value={quantity}
+              value={quantity.toString()}
               onChangeText={setQuantity}
               style={styles.quantityTextInputStyle}
             />

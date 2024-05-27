@@ -3,21 +3,21 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import * as navigation from '@/Navigators/Root'
 
 const ProductCard = ({
+  productID,
   prodcutName,
   productPrice,
   productImageUrl,
   productDescription,
   availableSizes,
-  addToCart
 }) => {
   const handlePress = () => {
     navigation.navigate('ProductDetails', {
+      productID: productID,
       productName: prodcutName, // corrected from "prodcutName" to "productName"
       productDescription: productDescription,
       productPrice: productPrice, // corrected from "productPrice" to "productPrice"
       productImageUrl: productImageUrl, // corrected from "productImage" to "productImage"
       availableSizes: availableSizes,
-      addToCart: addToCart
     })
   }
 
